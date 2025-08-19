@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect} from "react";
 import Navbar from "./components/Navbar.js"
+import Buy from "./components/Buy.js";
 function App() {
   const [coins, setCoins] = useState([]);
   const [oldData, setOldData] = useState([]);
   const [coinLogos, setCoinLogos] = useState([]);
+  const [filteredCoin, setFilteredCoin] = useState([]);
 
   useEffect(() => {
     get_coins()
@@ -18,7 +20,6 @@ function App() {
     setTimeout(()=>fetch_latest(response.all_coins), 5000);
   }
   const fetch_latest = async(prevCoins)=>{
-    
     console.log('fetching...');
     setOldData(prevCoins);
     let response = await fetch('http://localhost:5000/fetch-latest');
@@ -27,16 +28,18 @@ function App() {
     setCoins(response.all_coins);
     setTimeout(()=>fetch_latest(response.all_coins), 5000);
   }
-  console.log(oldData)
+
+  // console.log(coinLogos)
   return (
     <div className="mt-2 mx-2 md:mx-4 md:mt-6 lg:mt-8 lg:mx-12 ">
-      <Navbar />
+      <Navbar coins={coins} filteredCoin={filteredCoin} setFilteredCoin={setFilteredCoin}/>
       <div className="text-center my-2 lg:my-12">
         <h1 className="relative text-2xl md:text-4xl lg:text-8xl font-bold bg-gradient-to-br from-orange-500 to-white-900 bg-clip-text text-transparent">
           <span className="text-orange-500">{coins && coins[0] && coinLogos ? <img src={`${coinLogos[coins[0].id]}`} className="h-32 w-32 absolute left-[16%]"/> : "B"}</span>uy Real Money <br />
           <span className="text-2xl lg:text-6xl">with fake money</span>
         </h1>
       </div>
+      {/* <Buy/> */}
       <div>
         <table className="table-auto border-collapse border border-gray-600 w-full text-center">
           <thead className="bg-gradient-to-r from-gray-500 via-gray-700 to-gray-900 text-white">
@@ -50,8 +53,8 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {coins && coins.length > 0
-              ? coins.map((coin, index) => {
+            {(filteredCoin && filteredCoin.length > 0
+              ? filteredCoin : coins).map((coin, index) => {
                   if (index >= 10) return null;
                   return (
                     <tr
@@ -66,13 +69,13 @@ function App() {
                         <img src={`${coinLogos[coin.id]}`} className="h-6 w-6 absolute left-[25%]"/> : null}
                         <span>{coin.name}</span>
                       </td>
-                      <td className={`border border-gray-600 px-4 py-2 ${oldData.length==0 ? "text-white" : coin.one_h > oldData[index].one_h ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
+                      <td className={`border border-gray-600 px-4 py-2 ${coin.one_h > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
                         {coin.one_h}
                       </td>
-                      <td className="border border-gray-600 px-4 py-2 text-white group-hover:text-orange-400">
+                      <td className={`border border-gray-600 px-4 py-2 ${coin.one_day > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
                         {coin.one_day}
                       </td>
-                      <td className="border border-gray-600 px-4 py-2 text-white group-hover:text-orange-400">
+                      <td className={`border border-gray-600 px-4 py-2 ${coin.seven_day > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
                         {coin.seven_day}
                       </td>
                       <td className={`border border-gray-600 px-4 py-2 ${oldData.length===0 ? "text-white" : coin.price > oldData[index].price ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
@@ -81,7 +84,7 @@ function App() {
                     </tr>
                   );
                 })
-              : null}
+              }
           </tbody>
         </table>
 
