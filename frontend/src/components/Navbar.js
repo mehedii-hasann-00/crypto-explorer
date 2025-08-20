@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ether from './ether';
 
 const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
     const [isHover, setIsHover] = useState(false);
@@ -11,8 +12,11 @@ const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
             if(e.target.value==='') setFilteredCoin(coins);
         }
     }
-    // console.log('coins');
-    console.log(filteredCoin);
+
+    const track_eth = ()=>{
+        console.log('track ethh...');
+    }
+
     return (
         <div class="grid grid-cols-2 mb-2 lg:my-12">
             <div className=''>
@@ -35,7 +39,7 @@ const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
 
                 <div className="relative inline-block">
                     <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-pink-400 to-cyan-400"></div>
-                    <button className="relative flex items-center gap-2 bg-black text-white px-4 py-3 rounded-lg z-10 w-full">
+                    <button onClick={()=>track_eth()} className="relative flex items-center gap-2 bg-black text-white px-4 py-3 rounded-lg z-10 w-full">
                         <span>Track an Eth Address</span>
                     </button>
                 </div>
