@@ -16,7 +16,7 @@ const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
     return (
         <div class="grid grid-cols-2 mb-2 lg:my-12">
             <div className=''>
-                <h1 className='text-6xl text-orange'>Logo</h1>
+                <h1 className='text-6xl text-orange'>Logs</h1>
             </div>
             <div className='grid grid-cols-3 gap-2 py-2'>
                 <div className={`${isHover ? "relative" : ""}`}>
