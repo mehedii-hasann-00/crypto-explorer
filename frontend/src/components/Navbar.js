@@ -25,11 +25,20 @@ const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
                         <div class="absolute inset-0 bg-gradient-to-r from-orange-400 via-pink-400 to-cyan-400 hover:from-indigo-400 hover:to-cyan-400 blur-lg rounded-lg"></div>
                         : ""}
                 </div>
-                <button className="flex items-center gap-2 bg-orange-900 text-white px-4 rounded-full hover:bg-blue-700">
-                    <img src="/images/paypal.png" alt="PayPal" className="w-8 h-8 rounded-full" />
-                    <span>Buy with PayPal</span>
-                </button>
-                <button className='text-center text-white bg-orange-900 rounded-full hover:bg-blue-700'>Track an Ethereum Address</button>
+                <div className="relative inline-block">
+                    <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-orange-400 via-pink-400 to-cyan-400 hover:from-indigo-400 hover:to-cyan-400"></div>
+                    <button className="relative flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg z-10 w-full">
+                        <img src="/images/paypal.png" alt="PayPal" className="w-8 h-8 rounded-full" />
+                        <span>Buy with PayPal</span>
+                    </button>
+                </div>
+
+                <div className="relative inline-block">
+                    <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-orange-400 via-pink-400 to-cyan-400 hover:from-indigo-400 hover:to-cyan-400"></div>
+                    <button className="relative flex items-center gap-2 bg-black text-white px-4 py-3 rounded-lg z-10 w-full">
+                        <span>Track an Eth Address</span>
+                    </button>
+                </div>
             </div>
         </div>
     )
