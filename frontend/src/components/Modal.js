@@ -55,15 +55,15 @@ export default function Modal({ openModal, setOpenModal }) {
 
                         <div className="relative p-6">
                             <h2 className="text-xl font-semibold text-white drop-shadow mb-3">
-                                Modal Title
+                                Check Ethereum Balance
                             </h2>
                             <p className="text-white/85 drop-shadow mb-5">
-                                This is a frosted glass Tailwind modal. Add any content here.
+                                Data Provider : Infura
                             </p>
 
                             {/* Title + Gradient Input */}
                             <label className="block text-sm font-medium text-white/90 mb-2">
-                                enter a valid Ethereum address
+                                Enter a valid Ethereum address
                             </label>
                             <input
                                 type="text"
@@ -88,7 +88,10 @@ export default function Modal({ openModal, setOpenModal }) {
 
                             <div className="mt-6 flex justify-end gap-3">
                                 <button
-                                    onClick={() => setOpenModal(false)}
+                                    onClick={() =>{ 
+                                        setOpenModal(false);
+                                        setWallet(prev => ({ ...prev, status: false, address:false, value: false }));
+                                    }}
                                     className="px-4 py-2 rounded-xl border border-white/30 text-white/90 hover:bg-white/10"
                                 >
                                     Close
