@@ -1,14 +1,19 @@
 import express from "express";
 import cors from "cors";
 import axios from "axios";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
 
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 
 
-app.get('/fetch-latest', async(req, res) => {
+app.get('/api/fetch-latest', async(req, res) => {
     const api_string = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
     const response = await axios.get(
         api_string,
@@ -43,7 +48,7 @@ app.get('/fetch-latest', async(req, res) => {
     res.send({ "all_coins": coins});
 })
 
-app.get("/get", async (req, res) => {
+app.get("/api/get", async (req, res) => {
     const api_string = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
     const response = await axios.get(
         api_string,
@@ -108,6 +113,11 @@ app.get("/get", async (req, res) => {
 
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+app.use(express.static(path.join(__dirname, "frontend", "build")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
 });
+
+
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));

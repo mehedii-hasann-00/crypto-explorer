@@ -13,7 +13,7 @@ function App() {
   }, []);
 
   const get_coins = async()=>{
-    let response = await fetch('http://localhost:5000/get');
+    let response = await fetch('/api/get');
     response = await response.json();
     setCoins(response.all_coins);
     setCoinLogos(response.logos);
@@ -22,7 +22,7 @@ function App() {
   const fetch_latest = async(prevCoins)=>{
     console.log('fetching...');
     setOldData(prevCoins);
-    let response = await fetch('http://localhost:5000/fetch-latest');
+    let response = await fetch('/api/fetch-latest');
     response = await response.json();
     
     setCoins(response.all_coins);

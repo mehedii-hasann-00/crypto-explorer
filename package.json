@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run frontend\"",
-    "server": "node server.js",
-    "frontend": "npm start --prefix frontend"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix frontend",
+    "build": "cd frontend && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +16,7 @@
     "axios": "^1.11.0",
     "concurrently": "^9.2.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^4.21.2"
   },
   "type": "module"
 }

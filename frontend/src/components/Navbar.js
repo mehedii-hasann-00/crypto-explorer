@@ -26,7 +26,7 @@ const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
                         : ""}
                 </div>
                 <div className="relative inline-block">
-                    <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-orange-400 via-pink-400 to-cyan-400 hover:from-indigo-400 hover:to-cyan-400"></div>
+                    <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-pink-400 to-cyan-400"></div>
                     <button className="relative flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg z-10 w-full">
                         <img src="/images/paypal.png" alt="PayPal" className="w-8 h-8 rounded-full" />
                         <span>Buy with PayPal</span>
@@ -34,7 +34,7 @@ const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
                 </div>
 
                 <div className="relative inline-block">
-                    <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-orange-400 via-pink-400 to-cyan-400 hover:from-indigo-400 hover:to-cyan-400"></div>
+                    <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-pink-400 to-cyan-400"></div>
                     <button className="relative flex items-center gap-2 bg-black text-white px-4 py-3 rounded-lg z-10 w-full">
                         <span>Track an Eth Address</span>
                     </button>
