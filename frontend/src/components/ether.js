@@ -1,24 +1,20 @@
-
-import { Wallet, isAddress, Mnemonic, InfuraProvider } from "ethers";
+import { Wallet, isAddress, Mnemonic, formatEther, InfuraProvider } from "ethers";
 const provider = new InfuraProvider('mainnet', 'e8e1754ff5e64e73867f9041b1df1f45');
 
 const ether = (address) => {
-    if(typeof address !== 'string') return false;
-
+    let value = false;
     if (isAddress(address)) {
-        console.log("Ethereum Address:", address);
+        provider.getBalance(address).then((balance) => {
+                value = formatEther(balance);
+                console.log(value);
+            })
+            .catch((error) => {
+                console.error(error)
+            })
     }
-    else {
-        console.log("Invalid Address");
-    }
-    provider
-        .getBalance(address)
-        .then((balance) => {
-            console.log(parseFloat(balance) / 1000000000000000000);
-        })
-        .catch((error) => {
-            console.error(error)
-        })
+    console.log(value);
+    return value;
+
 }
 
 export default ether

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import ether from './ether';
+
+import Modal from './Modal';
 
 const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
     const [isHover, setIsHover] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
     const search_coin = (e)=>{
         if (coins && coins.length>0) {
@@ -11,10 +13,6 @@ const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
             }
             if(e.target.value==='') setFilteredCoin(coins);
         }
-    }
-
-    const track_eth = ()=>{
-        console.log('track ethh...');
     }
 
     return (
@@ -36,14 +34,14 @@ const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
                         <span>Buy with PayPal</span>
                     </button>
                 </div>
-
                 <div className="relative inline-block">
                     <div className="absolute inset-0 rounded-lg blur-sm bg-gradient-to-r from-pink-400 to-cyan-400"></div>
-                    <button onClick={()=>track_eth()} className="relative flex items-center gap-2 bg-black text-white px-4 py-3 rounded-lg z-10 w-full">
+                    <button onClick={()=>setOpenModal(true)} className="relative flex items-center gap-2 bg-black text-white px-4 py-3 rounded-lg z-10 w-full">
                         <span>Track an Eth Address</span>
                     </button>
                 </div>
             </div>
+            <Modal openModal={openModal} setOpenModal={setOpenModal}/>
         </div>
     )
 }
