@@ -37,7 +37,7 @@ function App() {
       <Navbar coins={coins} filteredCoin={filteredCoin} setFilteredCoin={setFilteredCoin}/>
       <div className="text-center my-2 lg:my-12">
         <h1 className="relative text-2xl md:text-4xl lg:text-8xl font-bold bg-gradient-to-br from-orange-500 to-white-900 bg-clip-text text-transparent">
-          <span className="text-orange-500">{coins && coins[0] && coinLogos ? <img src={`${coinLogos[coins[0].id]}`} className="h-32 w-32 absolute left-[16%]"/> : "B"}</span>uy Real Money <br />
+          Buy Real Money <br />
           <span className="text-2xl lg:text-6xl">with fake money</span>
         </h1>
       </div>
@@ -102,3 +102,5 @@ function App() {
 }
 
 export default App;
+
+
