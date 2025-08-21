@@ -79,7 +79,7 @@ function App() {
                       <td className={`border border-gray-600 px-4 py-2 ${coin.seven_day > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
                         {coin.seven_day}
                       </td>
-                      <td className={`border border-gray-600 px-4 py-2 ${oldData.length===0 ? "text-white" : coin.price >= oldData[index].price ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
+                      <td className={`border border-gray-600 px-4 py-2 ${oldData.length===0 ? "text-white" : coin.price > oldData[index].price ? "text-green-500" : coin.price < oldData[index].price ? "text-red-500" : "text-white"} group-hover:text-orange-400`}>
                         {coin.price}
                       </td>
                     </tr>
