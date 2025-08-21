@@ -7,6 +7,7 @@ function App() {
   const [oldData, setOldData] = useState([]);
   const [coinLogos, setCoinLogos] = useState([]);
   const [filteredCoin, setFilteredCoin] = useState([]);
+  const [showQty, setShowQty] = useState(10);
 
   useEffect(() => {
     get_coins()
@@ -41,56 +42,61 @@ function App() {
         </h1>
       </div>
       {/* <Buy/> */}
-      <div>
-        <table className="table-auto border-collapse border border-gray-600 w-full text-center">
-          <thead className="bg-gradient-to-r from-gray-500 via-gray-700 to-gray-900 text-white">
-            <tr>
-              <th className="border border-gray-600 px-4 py-2">Rank</th>
-              <th className="border border-gray-600 px-4 py-2">Name</th>
-              <th className="border border-gray-600 px-4 py-2">1h %</th>
-              <th className="border border-gray-600 px-4 py-2">24h %</th>
-              <th className="border border-gray-600 px-4 py-2">7d %</th>
-              <th className="border border-gray-600 px-4 py-2">Price (USD)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {(filteredCoin && filteredCoin.length > 0
-              ? filteredCoin : coins).map((coin, index) => {
-                  if (index >= 10) return null;
-                  return (
-                    <tr
-                      key={coin.id}
-                      className="group hover:bg-gray-700 hover:shadow-lg transition-all duration-200"
-                    >
-                      <td className="border border-gray-600 px-4 py-2 text-white group-hover:text-orange-400">
-                        {coin.rank}
-                      </td>
-                      <td className="border border-gray-600 px-4 py-2 text-white group-hover:text-orange-400 relative">
-                        {coinLogos && coinLogos[coin.id] ?
-                        <img src={`${coinLogos[coin.id]}`} className="h-6 w-6 absolute left-[25%]"/> : null}
-                        <span>{coin.name}</span>
-                      </td>
-                      <td className={`border border-gray-600 px-4 py-2 ${coin.one_h > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
-                        {coin.one_h}
-                      </td>
-                      <td className={`border border-gray-600 px-4 py-2 ${coin.one_day > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
-                        {coin.one_day}
-                      </td>
-                      <td className={`border border-gray-600 px-4 py-2 ${coin.seven_day > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
-                        {coin.seven_day}
-                      </td>
-                      <td className={`border border-gray-600 px-4 py-2 ${oldData.length===0 ? "text-white" : coin.price > oldData[index].price ? "text-green-500" : coin.price < oldData[index].price ? "text-red-500" : "text-white"} group-hover:text-orange-400`}>
-                        {coin.price}
-                      </td>
-                    </tr>
-                  );
-                })
-              }
-          </tbody>
-        </table>
-
-
-      </div>
+      {coins && coins.length>0 ?
+        <div className="mb-8">
+          <table className="table-auto border-collapse border border-gray-600 w-full text-center">
+            <thead className="bg-gradient-to-r from-gray-500 via-gray-700 to-gray-900 text-white">
+              <tr>
+                <th className="border border-gray-600 px-4 py-2">Rank</th>
+                <th className="border border-gray-600 px-4 py-2">Name</th>
+                <th className="border border-gray-600 px-4 py-2">1h %</th>
+                <th className="border border-gray-600 px-4 py-2">24h %</th>
+                <th className="border border-gray-600 px-4 py-2">7d %</th>
+                <th className="border border-gray-600 px-4 py-2">Price (USD)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(filteredCoin && filteredCoin.length > 0
+                ? filteredCoin : coins).map((coin, index) => {
+                    if (index >= showQty) return null;
+                    return (
+                      <tr
+                        key={coin.id}
+                        className="group hover:bg-gray-700 hover:shadow-lg transition-all duration-200"
+                      >
+                        <td className="border border-gray-600 px-4 py-2 text-white group-hover:text-orange-400">
+                          {coin.rank}
+                        </td>
+                        <td className="border border-gray-600 px-4 py-2 text-white group-hover:text-orange-400 relative">
+                          {coinLogos && coinLogos[coin.id] ?
+                          <img src={`${coinLogos[coin.id]}`} className="h-6 w-6 absolute left-[25%]"/> : null}
+                          <span>{coin.name}</span>
+                        </td>
+                        <td className={`border border-gray-600 px-4 py-2 ${coin.one_h > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
+                          {coin.one_h}
+                        </td>
+                        <td className={`border border-gray-600 px-4 py-2 ${coin.one_day > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
+                          {coin.one_day}
+                        </td>
+                        <td className={`border border-gray-600 px-4 py-2 ${coin.seven_day > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>
+                          {coin.seven_day}
+                        </td>
+                        <td className={`border border-gray-600 px-4 py-2 ${oldData.length===0 ? "text-white" : coin.price > oldData[index].price ? "text-green-500" : coin.price < oldData[index].price ? "text-red-500" : "text-white"} group-hover:text-orange-400`}>
+                          {coin.price}
+                        </td>
+                      </tr>
+                    );
+                  })
+                }
+            </tbody>
+          </table>
+        </div> : null}
+      {coins && coins.length>0 ?
+        <div className="grid place-items-center">
+          <button onClick={()=>setShowQty(prev=>prev+10)} className=" py-2 px-6 bg-gradient-to-r from-cyan-400 via-pink-400 to-blue-400 rounded-full">
+            Show More
+          </button>
+        </div> : null}
     </div>
   );
 }
