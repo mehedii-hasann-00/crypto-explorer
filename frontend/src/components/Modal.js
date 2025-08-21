@@ -25,7 +25,10 @@ export default function Modal({ openModal, setOpenModal }) {
             {openModal && (
                 <div
                     className="fixed inset-0 z-50 grid place-items-center bg-black/60 backdrop-blur-sm p-4"
-                    onClick={() => setOpenModal(false)}
+                    onClick={() =>{ 
+                        setOpenModal(false);
+                        setWallet(prev => ({ ...prev, status: false, address:false, value: false }));
+                    }}
                 >
                     <div
                         onClick={(e) => e.stopPropagation()}
