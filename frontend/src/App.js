@@ -54,7 +54,7 @@ function App() {
                 <th className="border border-gray-600 px-4 py-2">7d %</th>
                 <th className="border border-gray-600 px-4 py-2 flex justify-center">
                   <span>Price (USD)</span>
-                  <img src="/images/green_dot.png" className="h-4 w-4 ml-4 mt-1"/>
+                  {navigator.onLine ? <img src="/images/green_dot.png" className="h-4 w-4 ml-4 mt-1"/> : null}
                   </th>
               </tr>
             </thead>
