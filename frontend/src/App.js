@@ -18,7 +18,7 @@ function App() {
     response = await response.json();
     setCoins(response.all_coins);
     setCoinLogos(response.logos);
-    setInterval(()=>fetch_latest(), 3000);
+    setInterval(()=>fetch_latest(), 5000);
   }
   const fetch_latest = async()=>{
     console.log('fetching...');
@@ -52,7 +52,10 @@ function App() {
                 <th className="border border-gray-600 px-4 py-2">1h %</th>
                 <th className="border border-gray-600 px-4 py-2">24h %</th>
                 <th className="border border-gray-600 px-4 py-2">7d %</th>
-                <th className="border border-gray-600 px-4 py-2">Price (USD)</th>
+                <th className="border border-gray-600 px-4 py-2 flex justify-center">
+                  <span>Price (USD)</span>
+                  <img src="/images/green_dot.png" className="h-4 w-4 ml-4 mt-1"/>
+                  </th>
               </tr>
             </thead>
             <tbody>
