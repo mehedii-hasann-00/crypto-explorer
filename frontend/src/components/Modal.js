@@ -4,19 +4,19 @@ const provider = new InfuraProvider('mainnet', 'e8e1754ff5e64e73867f9041b1df1f45
 
 
 export default function Modal({ openModal, setOpenModal }) {
-    const [wallet, setWallet] = useState({ status: false, value: false,address:false});
+    const [wallet, setWallet] = useState({ status: false, value: false, address: false });
 
-    const check_wallet = async(address) => {
-        if(address==""){
-            setWallet(prev => ({ ...prev, status: false, address:false, value: false }))
+    const check_wallet = async (address) => {
+        if (address == "") {
+            setWallet(prev => ({ ...prev, status: false, address: false, value: false }))
         }
-        if (address!=="" && isAddress(address)){
+        if (address !== "" && isAddress(address)) {
             provider.getBalance(address).then((balance) => {
-                setWallet(prev=>({...prev,value:formatEther(balance),address:true, status: true})) ;
+                setWallet(prev => ({ ...prev, value: formatEther(balance), address: true, status: true }));
             })
         }
-        if (address!=="" && !isAddress(address)){
-            setWallet(prev => ({ ...prev, status: false, address:true, value: false }))
+        if (address !== "" && !isAddress(address)) {
+            setWallet(prev => ({ ...prev, status: false, address: true, value: false }))
         }
     }
 
@@ -25,9 +25,9 @@ export default function Modal({ openModal, setOpenModal }) {
             {openModal && (
                 <div
                     className="fixed inset-0 z-50 grid place-items-center bg-black/60 backdrop-blur-sm p-4"
-                    onClick={() =>{ 
+                    onClick={() => {
                         setOpenModal(false);
-                        setWallet(prev => ({ ...prev, status: false, address:false, value: false }));
+                        setWallet(prev => ({ ...prev, status: false, address: false, value: false }));
                     }}
                 >
                     <div
@@ -83,7 +83,7 @@ export default function Modal({ openModal, setOpenModal }) {
                             />
                             {wallet.address && <label className="block text-sm font-medium text-white/90 my-2">
                                 {wallet.status ? <span className="text-green-500">
-                                    <span>Valid Address</span><br/>
+                                    <span>Valid Address</span><br />
                                     <span className="font-semibold text-lg">Balance : {wallet.value} ETH</span>
                                 </span>
                                     : <span className="text-red-500">Invalid Address</span>}
@@ -91,9 +91,9 @@ export default function Modal({ openModal, setOpenModal }) {
 
                             <div className="mt-6 flex justify-end gap-3">
                                 <button
-                                    onClick={() =>{ 
+                                    onClick={() => {
                                         setOpenModal(false);
-                                        setWallet(prev => ({ ...prev, status: false, address:false, value: false }));
+                                        setWallet(prev => ({ ...prev, status: false, address: false, value: false }));
                                     }}
                                     className="px-4 py-2 rounded-xl border border-white/30 text-white/90 hover:bg-white/10"
                                 >

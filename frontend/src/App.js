@@ -10,7 +10,7 @@ function App() {
   const [showQty, setShowQty] = useState(10);
 
   useEffect(() => {
-    get_coins()
+    get_coins();
   }, []);
 
   const get_coins = async()=>{
@@ -18,7 +18,7 @@ function App() {
     response = await response.json();
     setCoins(response.all_coins);
     setCoinLogos(response.logos);
-    setInterval(()=>fetch_latest(), 5000);
+    setInterval(()=>fetch_latest(), 3000);
   }
   const fetch_latest = async()=>{
     console.log('fetching...');
@@ -67,9 +67,9 @@ function App() {
                         <td className="border border-gray-600 px-4 py-2 text-white group-hover:text-orange-400">
                           {coin.rank}
                         </td>
-                        <td className="border border-gray-600 px-4 py-2 text-white group-hover:text-orange-400 relative">
+                        <td className="border border-gray-600 px-4 py-2 text-white group-hover:text-orange-400 flex justify-center">
                           {coinLogos && coinLogos[coin.id] ?
-                          <img src={`${coinLogos[coin.id]}`} className="h-6 w-6 absolute left-[25%]"/> : null}
+                          <img src={`${coinLogos[coin.id]}`} className="h-6 w-6 mr-3 left-[25%]"/> : null}
                           <span>{coin.name}</span>
                         </td>
                         <td className={`border border-gray-600 px-4 py-2 ${coin.one_h > 0 ? "text-green-500" : "text-red-500"} group-hover:text-orange-400`}>

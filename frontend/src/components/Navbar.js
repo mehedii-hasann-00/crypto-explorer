@@ -18,7 +18,6 @@ const Navbar = ({coins,filteredCoin,setFilteredCoin}) => {
     return (
         <div class="grid grid-cols-2 mb-2 lg:my-12">
             <div className=''>
-                {/* <h1 className='text-6xl text-orange'>Logs</h1> */}
                 <img src="/images/gb.png" alt="PayPal" className="w-28 h-16 rounded-full bg-none bg-transparent" />
             </div>
             <div className='grid grid-cols-3 gap-2 py-2'>

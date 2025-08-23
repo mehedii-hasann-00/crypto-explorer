@@ -12,7 +12,7 @@ app.use(cors());
 
 
 
-app.get('/api/fetch-latest', async(req, res) => {
+app.get('/api/fetch-latest', async (req, res) => {
     const api_string = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
     const response = await axios.get(
         api_string,
@@ -26,7 +26,7 @@ app.get('/api/fetch-latest', async(req, res) => {
 
     for (let i = 0; i < coins.length; i++) {
         let temp = {
-            rank :coins[i].cmc_rank,
+            rank: coins[i].cmc_rank,
             id: coins[i].id,
             name: coins[i].name
         };
@@ -44,7 +44,7 @@ app.get('/api/fetch-latest', async(req, res) => {
         }
         coins[i] = temp;
     }
-    res.send({ "all_coins": coins});
+    res.send({ "all_coins": coins });
 })
 
 app.get("/api/get", async (req, res) => {
@@ -86,7 +86,7 @@ app.get("/api/get", async (req, res) => {
     );
     for (let i = 0; i < coins.length; i++) {
         let temp = {
-            rank :coins[i].cmc_rank,
+            rank: coins[i].cmc_rank,
             id: coins[i].id,
             name: coins[i].name
         };
@@ -107,17 +107,16 @@ app.get("/api/get", async (req, res) => {
         }
         coins[i] = temp;
     }
-    console.log(coins[0]);
-    res.send({ "all_coins": coins,"logos":coin_logos});
+
+    res.send({ "all_coins": coins, "logos": coin_logos });
 
 });
 
-
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend", "build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
-  });
+    app.use(express.static(path.join(__dirname, "frontend", "build")));
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+    });
 }
 
 const PORT = process.env.PORT || 5000;
