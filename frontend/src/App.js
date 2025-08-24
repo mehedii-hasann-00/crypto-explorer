@@ -8,6 +8,7 @@ function App() {
   const [coinLogos, setCoinLogos] = useState([]);
   const [filteredCoin, setFilteredCoin] = useState([]);
   const [showQty, setShowQty] = useState(10);
+  const [isOnline, setIsOnline] = useState(false);
 
   useEffect(() => {
     get_coins();
@@ -16,8 +17,10 @@ function App() {
   const get_coins = async()=>{
     let response = await fetch('/api/get');
     response = await response.json();
+    console.log(response);
     setCoins(response.all_coins);
     setCoinLogos(response.logos);
+    setIsOnline(response.status);
     setInterval(()=>fetch_latest(), 5000);
   }
   const fetch_latest = async()=>{
@@ -27,6 +30,7 @@ function App() {
     response = await response.json();
     setCoins(prev=>{
       setOldData(prev);
+      setIsOnline(response.status);
       return response.all_coins;
     });
   }
@@ -54,7 +58,7 @@ function App() {
                 <th className="border border-gray-600 px-4 py-2">7d %</th>
                 <th className="border border-gray-600 px-4 py-2 flex justify-center">
                   <span>Price (USD)</span>
-                  {navigator.onLine ? <img src="/images/green_dot.png" className="h-4 w-4 ml-4 mt-1"/> : null}
+                  {isOnline ? <img src="/images/green_dot.png" className="h-4 w-4 ml-4 mt-1"/> : <img src="/images/red_dot.png" className="h-4 w-4 ml-4 mt-1"/>}
                   </th>
               </tr>
             </thead>

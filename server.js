@@ -44,7 +44,7 @@ app.get('/api/fetch-latest', async (req, res) => {
         }
         coins[i] = temp;
     }
-    res.send({ "all_coins": coins });
+    res.send({ "all_coins": coins, "status": coins ? true : false });
 })
 
 app.get("/api/get", async (req, res) => {
@@ -108,7 +108,7 @@ app.get("/api/get", async (req, res) => {
         coins[i] = temp;
     }
 
-    res.send({ "all_coins": coins, "logos": coin_logos });
+    res.send({ "all_coins": coins, "logos": coin_logos, "status": coins && coin_logos ? true : false });
 
 });
 
