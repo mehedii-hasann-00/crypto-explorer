@@ -18,7 +18,7 @@ app.get('/api/fetch-latest', async (req, res) => {
         api_string,
         {
             headers: {
-                "X-CMC_PRO_API_KEY": "25f6c6b0-fa4b-4f58-915d-7fddd75f33ef",
+                "X-CMC_PRO_API_KEY": "564ae5c4-c6c6-46d2-9a32-fa5e7c474a2a",
             }
         }
     );
@@ -53,7 +53,7 @@ app.get("/api/get", async (req, res) => {
         api_string,
         {
             headers: {
-                "X-CMC_PRO_API_KEY": "25f6c6b0-fa4b-4f58-915d-7fddd75f33ef",
+                "X-CMC_PRO_API_KEY": "564ae5c4-c6c6-46d2-9a32-fa5e7c474a2a",
             }
         }
     );
@@ -76,7 +76,7 @@ app.get("/api/get", async (req, res) => {
         "https://pro-api.coinmarketcap.com/v2/cryptocurrency/info",
         {
             headers: {
-                "X-CMC_PRO_API_KEY": "25f6c6b0-fa4b-4f58-915d-7fddd75f33ef",
+                "X-CMC_PRO_API_KEY": "564ae5c4-c6c6-46d2-9a32-fa5e7c474a2a",
             },
             params: {
                 id: coin_id
